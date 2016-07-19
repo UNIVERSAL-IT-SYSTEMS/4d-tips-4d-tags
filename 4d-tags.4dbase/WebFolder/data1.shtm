@@ -1,0 +1,45 @@
+<!--#4dcode
+  //:C157
+	READ ONLY:C145(*)
+	ALL RECORDS:C47([Product:1])
+	ORDER BY:C49([Product:1];[Product:1]name:2)
+	ARRAY TEXT:C222($paramNames;0)
+  ARRAY TEXT:C222($paramValues;0)
+  WEB GET VARIABLES:C683($paramNames;$paramValues)
+	C_LONGINT:C283($f)
+	$f:=Find in array:C230($paramNames;"year")
+  If ($f#-1)
+  	$year:=Num:C11($paramValues{$f})
+		QUERY BY FORMULA:C48([Inventory:2];Year of:C25([Inventory:2]when:4)=$year)
+	else
+		ALL RECORDS:C47([Inventory:2])
+  End if
+	ARRAY DATE:C224($dates;0)
+	DISTINCT VALUES:C339([Inventory:2]when:4;$dates)
+	SORT ARRAY:C229($dates)
+-->
+
+[<!--4dloop $dates--><!--#4dcode
+	QUERY:C277([Inventory:2];[Inventory:2]when:4=$dates{$dates})
+-->{
+	"date":"$4dtext(String:C10($dates{$dates};Internal date short special:K1:4))",<!--4dloop [Product:1]--><!--#4dcode
+		QUERY:C277([Inventory:2];[Inventory:2]product:2=[Product:1]id:1;*)
+		QUERY:C277([Inventory:2];[Inventory:2]when:4=$dates{$dates})
+	-->
+	"$4dtext(J_TEXT([Product:1]name:2))":<!--4dtext [Inventory:2]count:3--><!--4dtext J_ENDITEM(->[Product:1])--><!--4dendloop-->
+	}$4dtext(J_ENDITEM(->$dates))
+	<!--4dendloop-->]
+
+<!--#4dcode
+  ARRAY TEXT:C222($headerNames;4)
+  ARRAY TEXT:C222($headerValues;4)
+  $headerNames{1}:="Cache-Control"
+  $headerValues{1}:="no-cache, no-store, must-revalidate"
+  $headerNames{2}:="Pragma"
+  $headerValues{2}:="no-cache"
+  $headerNames{3}:="Expires"
+  $headerValues{3}:="0"
+	$headerNames{4}:="Server"
+  $headerValues{4}:="4D Summit Demo"
+  WEB SET HTTP HEADER:C660($headerNames;$headerValues)
+-->

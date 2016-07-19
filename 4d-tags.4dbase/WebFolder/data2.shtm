@@ -1,0 +1,63 @@
+<!--#4dcode
+  //:C157
+	READ ONLY:C145(*)
+	UNLOAD RECORD:C212([Product:1])
+	ARRAY TEXT:C222($paramNames;0)
+  ARRAY TEXT:C222($paramValues;0)
+  WEB GET VARIABLES:C683($paramNames;$paramValues)
+	C_LONGINT:C283($f)
+	ARRAY TEXT:C222($labels;0)
+	ARRAY LONGINT:C221($totals;0)
+	ARRAY LONGINT:C221($previousYearTotals;0)
+	ARRAY LONGINT:C221($counts;0)
+	ARRAY LONGINT:C221($previousYearCounts;0)
+	$f:=Find in array:C230($paramNames;"name")
+  If ($f#-1)
+  	$name:=$paramValues{$f}
+		$f:=Find in field:C653([Product:1]name:2;$name)
+	  If ($f#-1)
+			GOTO RECORD:C242([Product:1];$f)
+			RELATE MANY:C262([Product:1]id:1)
+			C_DATE:C307($jan1)
+			$jan1:=Add to date:C393($jan1;Year of:C25(Current date:C33);1;1)
+			QUERY SELECTION:C341([Inventory:2];[Inventory:2]when:4>=$jan1)
+			ORDER BY:C49([Inventory:2];[Inventory:2]when:4)
+			APPLY TO SELECTION:C70([Inventory:2];APPEND TO ARRAY:C911($labels;Choose:C955(Month of:C24([Inventory:2]when:4);"";"Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec")+" "+String:C10(Day of:C23([Inventory:2]when:4))))
+			SELECTION TO ARRAY:C260([Inventory:2]count:3;$counts)
+			C_LONGINT:C283($total)
+			$total:=0
+			ARRAY DATE:C224($previousYearDates;0)
+			FIRST RECORD:C50([Inventory:2])
+			For ($i;1;Records in selection:C76([Inventory:2]))
+				$total:=$total+[Inventory:2]count:3
+				APPEND TO ARRAY:C911($totals;$total)
+				APPEND TO ARRAY:C911($previousYearDates;Add to date:C393([Inventory:2]when:4;-1;0;0))
+				NEXT RECORD:C51([Inventory:2])
+			End for
+			$total:=0
+			For ($i;1;Size of array:C274($previousYearDates))
+				QUERY:C277([Inventory:2];[Inventory:2]product:2=[Product:1]id:1;*)
+				QUERY:C277([Inventory:2];[Inventory:2]when:4=$previousYearDates{$i})
+				$total:=$total+[Inventory:2]count:3
+				APPEND TO ARRAY:C911($previousYearTotals;$total)
+				APPEND TO ARRAY:C911($previousYearCounts;[Inventory:2]count:3)
+			End for
+	  End if
+  End if
+-->
+{
+	"totals":{
+		"labels": [<!--4dloop $labels-->"$4dtext($labels{$labels})"<!--4dtext J_ENDITEM(->$labels)--><!--4dendloop-->],
+		"series": [
+	    [<!--4dloop $totals-->"$4dtext($totals{$totals})"<!--4dtext J_ENDITEM(->$totals)--><!--4dendloop-->],
+	    [<!--4dloop $previousYearTotals-->"$4dtext($previousYearTotals{$previousYearTotals})"<!--4dtext J_ENDITEM(->$previousYearTotals)--><!--4dendloop-->]
+	  ]
+	},
+	"counts":{
+		"labels": [<!--4dloop $labels-->"$4dtext($labels{$labels})"<!--4dtext J_ENDITEM(->$labels)--><!--4dendloop-->],
+		"series": [
+			[<!--4dloop $counts-->"$4dtext($counts{$counts})"<!--4dtext J_ENDITEM(->$counts)--><!--4dendloop-->],
+			[<!--4dloop $previousYearCounts-->"$4dtext($previousYearCounts{$previousYearCounts})"<!--4dtext J_ENDITEM(->$previousYearCounts)--><!--4dendloop-->]
+		]
+	}
+}

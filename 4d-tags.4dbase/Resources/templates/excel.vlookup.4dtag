@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--#4dcode
+
+	$title:=OB Get:C1224($1;"Title";Is text:K8:3)
+	$windowTopX:=OB Get:C1224($1;"WindowTopX";Is longint:K8:6)
+	$windowTopY:=OB Get:C1224($1;"WindowTopY";Is longint:K8:6)
+	$windowHeight:=OB Get:C1224($1;"WindowHeight";Is longint:K8:6)
+	$windowWidth:=OB Get:C1224($1;"WindowWidth";Is longint:K8:6)
+	$fontName:=OB Get:C1224($1;"FontName";Is text:K8:3)
+	$fontSize:=OB Get:C1224($1;"FontSize";Is real:K8:4)
+	$defaultRowHeight:=OB Get:C1224($1;"DefaultRowHeight";Is real:K8:4)
+	$productFill:=OB Get:C1224($1;"ProductFill";Is text:K8:3)
+	$productFillAlt:=OB Get:C1224($1;"ProductFillAlt";Is text:K8:3)
+	$inventoryFill:=OB Get:C1224($1;"InventoryFill";Is text:K8:3)
+	$inventoryFillAlt:=OB Get:C1224($1;"InventoryFillAlt";Is text:K8:3)
+	$priceFormat:=OB Get:C1224($1;"PriceFormat";Is text:K8:3)
+	$amountFormat:=OB Get:C1224($1;"AmountFormat";Is text:K8:3)
+	$headerColor:=OB Get:C1224($1;"HeaderColor";Is text:K8:3)
+	$headerColorAlt:=OB Get:C1224($1;"HeaderColorAlt";Is text:K8:3)
+	$headerFill:=OB Get:C1224($1;"HeaderFill";Is text:K8:3)
+	$headerFillAlt:=OB Get:C1224($1;"HeaderFillAlt";Is text:K8:3)
+-->
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+	xmlns:o="urn:schemas-microsoft-com:office:office"
+	xmlns:x="urn:schemas-microsoft-com:office:excel"
+	xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+	xmlns:html="http://www.w3.org/TR/REC-html40">
+
+	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+		<Title><!--4dtext $title--></Title>
+		<Subject></Subject>
+		<Author></Author>
+		<Keywords></Keywords>
+		<Description></Description>
+		<LastAuthor></LastAuthor>
+		<Category></Category>
+		<Manager></Manager>
+		<Created></Created>
+		<LastSaved></LastSaved>
+		<Company></Company>
+		<Version></Version>
+	</DocumentProperties>
+
+	<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+		<AllowPNG/>
+	</OfficeDocumentSettings>
+
+	<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+		<WindowHeight><!--#4dtext $windowHeight--></WindowHeight>
+		<WindowWidth><!--#4dtext $windowWidth--></WindowWidth>
+		<WindowTopX><!--#4dtext $windowTopX--></WindowTopX>
+		<WindowTopY><!--#4dtext $windowTopY--></WindowTopY>
+		<ProtectStructure>False</ProtectStructure>
+		<ProtectWindows>False</ProtectWindows>
+	</ExcelWorkbook>
+
+	<Styles>
+
+		<Style ss:ID="Default" ss:Name="Normal">
+			<Alignment ss:Vertical="Bottom"/>
+			<Borders/>
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="$4dtext($fontSize)"
+				ss:Color="#000000"/>
+			<Interior/>
+			<NumberFormat/>
+			<Protection/>
+		</Style>
+
+		<Style ss:ID="s62">
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="$4dtext($fontSize)"
+				ss:Color="$4dtext($headerColor)"/>
+			<Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+			<Interior ss:Color="$4dtext($headerFill)" ss:Pattern="Solid"/>
+		</Style>
+
+		<Style ss:ID="s63">
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="$4dtext($fontSize)"
+				ss:Color="$4dtext($headerColorAlt)"/>
+			<Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+			<Interior ss:Color="$4dtext($headerFillAlt)" ss:Pattern="Solid"/>
+		</Style>
+
+		<Style ss:ID="total-amount">
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="$4dtext($fontSize)"
+				ss:Color="$4dtext($headerColorAlt)"/>
+			<Interior ss:Color="$4dtext($headerFillAlt)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($amountFormat)"/>
+		</Style>
+
+		<Style ss:ID="s64">
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="$4dtext($fontSize)"
+				ss:Color="#FFFFFF"/>
+			<Interior ss:Color="#003366" ss:Pattern="Solid"/>
+		</Style>
+
+		<Style ss:ID="s65">
+			<Font
+				ss:FontName="$4dtext($fontName)"
+				x:CharSet="128"
+				x:Family="Swiss"
+				ss:Size="12"
+				ss:Color="$4dtext($headerColor)"/>
+			<NumberFormat ss:Format="[ENG][$-409]d\-mmm;@"/>
+			<Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+			<Interior ss:Color="$4dtext($headerFill)" ss:Pattern="Solid"/>
+		</Style>
+
+		<Style ss:ID="inventory-even">
+			<Interior ss:Color="$4dtext($inventoryFill)" ss:Pattern="Solid"/>
+		</Style>
+		<Style ss:ID="inventory-odd">
+			<Interior ss:Color="$4dtext($inventoryFillAlt)" ss:Pattern="Solid"/>
+		</Style>
+
+		<Style ss:ID="inventory-price-even">
+			<Interior ss:Color="$4dtext($inventoryFill)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($priceFormat)"/>
+		</Style>
+		<Style ss:ID="inventory-price-odd">
+			<Interior ss:Color="$4dtext($inventoryFillAlt)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($priceFormat)"/>
+		</Style>
+		<Style ss:ID="inventory-amount-even">
+			<Interior ss:Color="$4dtext($inventoryFill)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($amountFormat)"/>
+		</Style>
+		<Style ss:ID="inventory-amount-odd">
+			<Interior ss:Color="$4dtext($inventoryFillAlt)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($amountFormat)"/>
+		</Style>
+
+		<Style ss:ID="product-even">
+			<Interior ss:Color="$4dtext($productFill)" ss:Pattern="Solid"/>
+		</Style>
+		<Style ss:ID="product-odd">
+			<Interior ss:Color="$4dtext($productFillAlt)" ss:Pattern="Solid"/>
+		</Style>
+		<Style ss:ID="product-price-even">
+			<Interior ss:Color="$4dtext($productFill)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($priceFormat)"/>
+		</Style>
+		<Style ss:ID="product-price-odd">
+			<Interior ss:Color="$4dtext($productFillAlt)" ss:Pattern="Solid"/>
+			<NumberFormat ss:Format="$4dtext($priceFormat)"/>
+		</Style>
+
+	</Styles>
+
+	<Worksheet ss:Name="Inventory">
+		<!--#4dcode
+			ALL RECORDS:C47([Product:1])
+			ORDER BY:C49([Product:1]id:1)
+			ALL RECORDS:C47([Inventory:2])
+			ARRAY DATE:C224($dates;0)
+			DISTINCT VALUES:C339([Inventory:2]when:4;$dates)
+			SORT ARRAY:C229($dates)
+			$nameLookupFormula:="=VLOOKUP(RC[-1],Product!R2C1:R"+String:C10(Records in selection:C76([Product:1])+1)+"C2,2,FALSE)"
+			$priceLookupFormula:="=VLOOKUP(RC[-2],Product!R2C1:R"+String:C10(Records in selection:C76([Product:1])+1)+"C3,3,FALSE)"
+			$amountFormula:="=RC[-2]*RC[-1]"
+			$sumFormula:="=SUM(INDEX(History!R2C[-1]:R"+String:C10(Records in selection:C76([Product:1])+1)+"C"+String:C10(Size of array:C274($dates)+2)+",MATCH(RC[-3],History!R2C1:R"+String:C10(Records in selection:C76([Product:1])+1)+"C1),0))"
+			$expandedRowCount:=Records in selection:C76([Product:1])+3
+		-->
+		<Table
+			ss:ExpandedColumnCount="5"
+			ss:ExpandedRowCount="$4dtext($expandedRowCount)"
+			x:FullColumns="1"
+			x:FullRows="1"
+			ss:DefaultColumnWidth="77"
+			ss:DefaultRowHeight="$4dtext($defaultRowHeight)">
+
+			<Column ss:AutoFitWidth="0" ss:Width="110"/>
+			<Column ss:AutoFitWidth="0" ss:Width="220"/>
+			<Column ss:AutoFitWidth="0" ss:Width="110"/>
+			<Column ss:AutoFitWidth="0" ss:Width="80"/>
+			<Column ss:AutoFitWidth="0" ss:Width="130"/>
+
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;1)--></Data></Cell>
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;2)--></Data></Cell>
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;3)--></Data></Cell>
+				<Cell ss:StyleID="s63"><Data ss:Type="String">count</Data></Cell>
+				<Cell ss:StyleID="s63"><Data ss:Type="String">amount</Data></Cell>
+			</Row>
+			<!--4deval $i:=0-->
+			<!--4dloop [Product:1]-->
+			<!--#4dcode
+				If ($i%2)=0
+					$ssInventory:="inventory-even"
+					$ssInventoryPrice:="inventory-price-even"
+					$ssInventoryAmount:="inventory-amount-even"
+				else
+					$ssInventory:="inventory-odd"
+					$ssInventoryPrice:="inventory-price-odd"
+					$ssInventoryAmount:="inventory-amount-odd"
+				End if
+				$i:=$i+1
+				RELATE MANY:C262([Product:1]id:1)
+			-->
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="$4dtext($ssInventory)"><Data ss:Type="Number"><!--4dtext [Inventory:2]product:2--></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssInventory)" ss:Formula="$4dtext($nameLookupFormula)"><Data
+				ss:Type="String"></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssInventoryPrice)" ss:Formula="$4dtext($priceLookupFormula)"><Data
+				ss:Type="Number"></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssInventory)" ss:Formula="$4dtext($sumFormula)"><Data ss:Type="Number"></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssInventoryAmount)" ss:Formula="$4dtext($amountFormula)"><Data ss:Type="Number"></Data></Cell>
+			</Row>
+			<!--4dendloop-->
+
+			<Row/>
+
+			<Row ss:AutoFitHeight="0">
+			 <Cell/>
+			 <Cell/>
+			 <Cell/>
+			 <Cell ss:StyleID="s63"><Data ss:Type="String">Total</Data></Cell>
+			 <Cell ss:StyleID="total-amount" ss:Formula="=SUM(R1C5:R[-2]C)"><Data ss:Type="Number"></Data></Cell>
+		 </Row>
+
+		</Table>
+
+		<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+			<PageSetup>
+				<Header x:Margin="0.3"/>
+				<Footer x:Margin="0.3"/>
+				<PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+			</PageSetup>
+			<Unsynced/>
+			<Print>
+				<ValidPrinterInfo/>
+				<PaperSizeIndex>9</PaperSizeIndex>
+				<HorizontalResolution>-4</HorizontalResolution>
+				<VerticalResolution>-4</VerticalResolution>
+			</Print>
+			<PageLayoutZoom>0</PageLayoutZoom>
+			<Selected/>
+			<ProtectObjects>False</ProtectObjects>
+			<ProtectScenarios>False</ProtectScenarios>
+		</WorksheetOptions>
+
+	</Worksheet>
+
+	<Worksheet ss:Name="Product">
+		<!--#4dcode
+			ALL RECORDS:C47([Product:1])
+			ORDER BY:C49([Product:1]id:1)
+			$expandedRowCount:=Records in selection:C76([Product:1])+1
+		-->
+		<Table
+			ss:ExpandedColumnCount="5"
+			ss:ExpandedRowCount="$4dtext($expandedRowCount)"
+			x:FullColumns="1"
+			x:FullRows="1"
+			ss:DefaultColumnWidth="77"
+			ss:DefaultRowHeight="$4dtext($defaultRowHeight)">
+
+			<Column ss:AutoFitWidth="0" ss:Width="110"/>
+			<Column ss:AutoFitWidth="0" ss:Width="220"/>
+			<Column ss:AutoFitWidth="0" ss:Width="110"/>
+			<Column ss:AutoFitWidth="0" ss:Width="80"/>
+			<Column ss:AutoFitWidth="0" ss:Width="130"/>
+
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;1)--></Data></Cell>
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;2)--></Data></Cell>
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;3)--></Data></Cell>
+			</Row>
+			<!--4deval $i:=0-->
+			<!--4dloop [Product:1]-->
+			<!--#4dcode
+				If ($i%2)=0
+					$ssProduct:="product-even"
+					$ssProductPrice:="product-price-even"
+				else
+					$ssProduct:="product-odd"
+					$ssProductPrice:="product-price-odd"
+				End if
+				$i:=$i+1
+			-->
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="$4dtext($ssProduct)"><Data ss:Type="Number"><!--4dtext [Product:1]id:1--></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssProduct)"><Data ss:Type="String"><!--4dtext [Product:1]name:2--></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssProductPrice)"><Data ss:Type="Number"><!--4dtext [Product:1]price:3--></Data></Cell>
+			</Row>
+		   <!--#4dendloop-->
+
+		</Table>
+
+		<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+			<PageSetup>
+				<Header x:Margin="0.3"/>
+				<Footer x:Margin="0.3"/>
+				<PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+			</PageSetup>
+			<Unsynced/>
+			<Print>
+				<ValidPrinterInfo/>
+				<PaperSizeIndex>9</PaperSizeIndex>
+				<HorizontalResolution>-4</HorizontalResolution>
+				<VerticalResolution>-4</VerticalResolution>
+			</Print>
+			<PageLayoutZoom>0</PageLayoutZoom>
+			<Selected/>
+			<ProtectObjects>False</ProtectObjects>
+			<ProtectScenarios>False</ProtectScenarios>
+		</WorksheetOptions>
+
+	</Worksheet>
+
+	<Worksheet ss:Name="History">
+		<!--#4dcode
+			$expandedColumnsCount:=Size of array:C274($dates)+2
+			$expandedRowCount:=Records in selection:C76([Product:1])+1
+		-->
+		<Table
+			ss:ExpandedColumnCount="$4dtext($expandedColumnsCount)"
+			ss:ExpandedRowCount="$4dtext($expandedRowCount)"
+			x:FullColumns="1"
+			x:FullRows="1"
+			ss:DefaultColumnWidth="77"
+			ss:DefaultRowHeight="$4dtext($defaultRowHeight)">
+
+			<Column ss:AutoFitWidth="0" ss:Width="110"/>
+			<Column ss:AutoFitWidth="0" ss:Width="220"/>
+
+			<!--4dloop $dates-->
+			<Column ss:AutoFitWidth="0" ss:Width="80"/>
+			<!--4dendloop-->
+
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;1)--></Data></Cell>
+				<Cell ss:StyleID="s62"><Data ss:Type="String"><!--4dtext Field name:C257(1;2)--></Data></Cell>
+				<!--4dloop $dates-->
+				<Cell ss:StyleID="s65"><Data ss:Type="DateTime"><!--4dtext String:C10($dates{$dates};ISO date:K1:8)+".000"--></Data></Cell>
+				<!--4dendloop-->
+			</Row>
+
+			<!--4deval $i:=0-->
+			<!--4dloop [Product:1]-->
+			<!--#4dcode
+				If ($i%2)=0
+					$ssProduct:="product-even"
+					$ssProductPrice:="product-price-even"
+				else
+					$ssProduct:="product-odd"
+					$ssProductPrice:="product-price-odd"
+				End if
+				$i:=$i+1
+			-->
+			<Row ss:AutoFitHeight="0">
+				<Cell ss:StyleID="$4dtext($ssProduct)"><Data ss:Type="Number"><!--4dtext [Product:1]id:1--></Data></Cell>
+				<Cell ss:StyleID="$4dtext($ssProduct)"><Data ss:Type="String"><!--4dtext [Product:1]name:2--></Data></Cell>
+				<!--4dloop $dates-->
+				<!--#4dcode
+					QUERY:C277([Inventory:2];[Inventory:2]when:4=$dates{$dates};*)
+					QUERY:C277([Inventory:2];[Inventory:2]product:2=[Product:1]id:1)
+				-->
+				<Cell ss:StyleID="$4dtext($ssProduct)"><Data ss:Type="Number"><!--4dtext [Inventory:2]count:3--></Data></Cell>
+				<!--4dendloop-->
+			</Row>
+		   <!--#4dendloop-->
+
+		</Table>
+
+		<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+			<PageSetup>
+				<Header x:Margin="0.3"/>
+				<Footer x:Margin="0.3"/>
+				<PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+			</PageSetup>
+			<Unsynced/>
+			<Print>
+				<ValidPrinterInfo/>
+				<PaperSizeIndex>9</PaperSizeIndex>
+				<HorizontalResolution>-4</HorizontalResolution>
+				<VerticalResolution>-4</VerticalResolution>
+			</Print>
+			<PageLayoutZoom>0</PageLayoutZoom>
+			<Selected/>
+			<ProtectObjects>False</ProtectObjects>
+			<ProtectScenarios>False</ProtectScenarios>
+		</WorksheetOptions>
+
+	</Worksheet>
+
+</Workbook>

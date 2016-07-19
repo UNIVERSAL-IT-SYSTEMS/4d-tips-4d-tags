@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="utf-8" />
+	  <title>4D Tags | Chart 2</title>
+		<link rel="stylesheet" href="css/chartist.min.css" />
+		<link rel="stylesheet" href="css/chart2.css" />
+	</head>
+	<!--#4dcode
+		READ ONLY:C145(*)
+		ALL RECORDS:C47([Product:1])
+		ORDER BY:C49([Product:1];[Product:1]name:2)
+	-->
+	<body>
+		<div class="title">Engine: chartist.js</div>
+<!--4dloop [Product:1]-->
+			<div class="header"><!--4dtext [Product:1]name:2--></div>
+			<div class="chart-container ct-chart ct-minor-sixth" data-chart="$4dtext([Product:1]name:2)">
+				<div id='bar-$4dtext(Replace string:C233([Product:1]name:2;" ";"_";*))'></div>
+				<div id='line-$4dtext(Replace string:C233([Product:1]name:2;" ";"_";*))'></div>
+			</div>
+<!--4dendloop-->
+	</body>
+	<script src="js/chartist.min.js"></script>
+	<script src="js/chart2.js"></script>
+</html>

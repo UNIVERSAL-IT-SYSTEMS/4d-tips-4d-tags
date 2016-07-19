@@ -1,0 +1,211 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+svg, div.title {
+  font: 14px 'Open Sans';
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #000;
+}
+
+.axis .tick line {
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+.area {
+  stroke-width: 1;
+}
+
+.area.outer,
+.legend .outer {
+  fill: rgba(230, 230, 255, 0.8);
+  stroke: rgba(216, 216, 255, 0.8);
+}
+
+.area.inner,
+.legend .inner {
+  fill: rgba(127, 127, 255, 0.8);
+  stroke: rgba(96, 96, 255, 0.8);
+}
+
+path {
+  fill: none;
+}
+
+.legend .legend-bg {
+  fill: #333;
+  fill-opacity: .1;
+  stroke: none;
+}
+
+.legend text {
+  fill: #333;
+  font-weight: bold;
+}
+
+.c-Apples,
+.legend .c-Apples {
+  fill: none;
+  stroke: red;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Bananas,
+.legend .c-Bananas {
+  fill: none;
+  stroke: yellow;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Beets,
+.legend .c-Beets {
+  fill: none;
+  stroke: blue;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Bell_Peppers,
+.legend .c-Bell_Peppers {
+  fill: none;
+  stroke: purple;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Brussel_Sprouts,
+.legend .c-Brussel_Sprouts {
+  fill: none;
+  stroke: greenyellow;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Carrots,
+.legend .c-Carrots {
+  fill: none;
+  stroke: orange;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Cauliflower,
+.legend .c-Cauliflower {
+  fill: none;
+  stroke: lemonchiffon;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Celery,
+.legend .c-Celery {
+  fill: none;
+  stroke: chartreuse;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Cucumbers,
+.legend .c-Cucumbers {
+  fill: none;
+  stroke: green;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Eggs,
+.legend .c-Eggs {
+  fill: none;
+  stroke: gray;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Garlic,
+.legend .c-Garlic {
+  fill: none;
+  stroke: darkgoldenrod;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Ginger_Root,
+.legend .c-Ginger_Root {
+  fill: none;
+  stroke: darkkhaki;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Kale,
+.legend .c-Kale {
+  fill: none;
+  stroke: teal;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Lemons,
+.legend .c-Lemons {
+  fill: none;
+  stroke: gold;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Limes,
+.legend .c-Limes {
+  fill: none;
+  stroke: lime;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Romaine,
+.legend .c-Romaine {
+  fill: none;
+  stroke: lawnGreen;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Shallots,
+.legend .c-Shallots {
+  fill: none;
+  stroke: purple;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Spinach,
+.legend .c-Spinach {
+  fill: none;
+  stroke: seagreen;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Yellow_Onions,
+.legend .c-Yellow_Onions {
+  fill: none;
+  stroke: tan;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
+
+.c-Zucchini,
+.legend .c-Zucchini {
+  fill: none;
+  stroke: forestgreen;
+  stroke-width: 3;
+  stroke-opacity: .5;
+}
